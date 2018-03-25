@@ -14,5 +14,5 @@ node app
 That's it! Go to `http://server-ip:1324`.
 
 ### Config
-To change port or tweak command in `config.js`.
+To change port or tweak command in `conf.js`.
 
