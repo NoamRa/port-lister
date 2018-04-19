@@ -4,8 +4,7 @@ const app = express();
 
 const conf = require('./conf.js');
 
-const template = 
-
+app.set('view engine', 'ejs');
 app.get("/", (req, res) => {
     let promise = new Promise((res, rej) => {
         exec(conf.cmd, function(err, stdout, stderr) {
@@ -44,11 +43,9 @@ app.get("/", (req, res) => {
         };
     })
     
-
-
-    .then(x => {
+    .then(data => {
         res.status(200);
-        res.send(x);
+        res.render('index', {data: data});
     })
     .catch(err => {
         res.status(500);

@@ -1,0 +1,89 @@
+<html>
+<head>
+  <meta http-equiv='refresh' content='300'>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      font-family: monospace;
+      background-color: lightgray
+    }
+    h2 {
+      text-align: center;
+    }
+    .content {
+      display:flex;
+      flex-direction: row;
+      justify-content: center;
+    }
+    .table {
+      display: table;
+      table-layout: fixed;
+      text-align: center;
+      width: 400px;
+      border: 1px black solid;
+      padding: 0px
+    }
+    .row {
+      list-style-position:inside;
+      display: table-row;
+      border: 1px black solid;
+
+    }
+    .cell {
+      display: table-cell;
+    }
+    .raw-block {
+      display:flex;
+      justify-content: center;
+      white-space:pre-wrap;
+    }
+    .hidden {
+      display: none;
+    }
+  </style>
+
+  <script>
+  toggleRawData = () => {
+    var x = document.getElementById("rawData");
+    if (x.style.display === "none") {
+        x.style.display = "block";
+    } else {
+        x.style.display = "none";
+    }
+  }
+  </script>
+</head>
+  <body>
+    <h2>ports</h2>
+    <div class='content'>
+    <ol class='table'>
+      <li class='row'>
+        <span class='cell'><b>Port</b></span>
+        <span class='cell'><b>Process Name</b></span>
+        <span class='cell'><b>Process ID</b></span>
+      </li>
+      <% Object.values(data.serverData).forEach(server => { %>
+        <li class='row'>
+          <span class='cell'><%= server.port %></span>
+          <span class='cell'><%= server.process_name %></span>
+          <span class='cell'><%= server.pid %></span>
+        </li>
+      <% }); %>
+     </ol>
+     </div>
+     <p class='raw-block'>
+      <button onclick="toggleRawData()">Show Raw Data</button>
+     <p>
+     <div class='raw-block'>
+     <div id='rawData' style='display:none'>
+      <% data.resArr.forEach(serverLine => { %>
+        <li class='row'>
+          <span class='cell'><%= serverLine %></span>
+        </li>
+      <% }); %>
+     </div>
+     <div>
+  </body>
+</html>
